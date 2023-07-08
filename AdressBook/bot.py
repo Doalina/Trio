@@ -1,14 +1,14 @@
 import pickle
 from my_classes import *
 from parser_oop import Command
-from search import search
+from search import search, bday_people
 
 
 # Define break points and available commands
-BREAK_POINTS = "good bye", "close", "exit"
+BREAK_POINTS = {"good bye", "close", "exit"}
 
 # storage details; save on exit
-storage_name = "data.bin"
+storage_name = "AdressBook\data.bin"
 
 try:
     with open(storage_name, "rb") as fh:
@@ -54,18 +54,19 @@ def help(*_):
     """Show a list of available commands and their usage."""
 
     list_of_instructions = [
-        "the order of input matters; only commands and names are strictly required; \n numbers must not contain spaces \n",
-        "greeting: hello",
-        "adding or updating a contact: add name -number -additional numbers --birthday dd/mm(/yyyy)",
-        "completely modify an existing contact: change name -number --birthday",
-        "number(s): call name",
-        "removes the contact entirely: remove name",
-        "reveal the data: show_all",
-        "pagination with default value 2 record per page: page",
-        "days to birthday: bday name",
-        "show all available commands: help",
-        f"to exit the program and save changes: {' or '.join(list(BREAK_POINTS))} ",
-        "to search through the data: search",
+        "The order of input matters; only commands and names are strictly required;\nnumbers must not contain spaces \n",
+        "1. greeting: hello",
+        "2. adding or updating a contact: add name -number -additional numbers --birthday dd/mm(/yyyy)",
+        "3. completely modify an existing contact: change name -number --birthday",
+        "4. number(s): call name",
+        "5. removes the contact entirely: remove name",
+        "6. reveal the data: show_all",
+        "7. pagination with default value 2 record per page: page",
+        "8. days to birthday: bday name",
+        "9. show all available commands: help",
+        f"10. to exit the program and save changes: {' or '.join(list(BREAK_POINTS))} ",
+        "11. to search through the data: search",
+        "12. to see the list of people who have bdays in some days: bdays number_of_days",
     ]
 
     return "\n".join(list_of_instructions)
@@ -159,7 +160,7 @@ def bday(name, *_):
 
 
 # Set of command functions, but it doesn't include pagination 'page' and exit points
-_commands = {
+commands = {
     "hello": hello,
     "add": add,
     "change": change,
@@ -177,7 +178,7 @@ _commands = {
 def main():
     """Main function that runs the program."""
     while True:
-        user_input = input("> ").lower()
+        user_input = input("> ")
 
         if user_input in BREAK_POINTS:
             break
@@ -217,6 +218,9 @@ def main():
                     break
                 else:
                     print(search(pattern, DATA))
+
+        elif re.search(r"bdays \d+", user_input):
+            print(bday_people(DATA, re.search(r"\d+", user_input).group()))
 
         else:
             command, *data = c.command, c.name, c.phones
