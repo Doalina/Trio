@@ -1,0 +1,31 @@
+add Paige Martinez -5066893139992 
+add Michael Hughes -2773099100 --09/07/2022
+add Miranda Davis -001308548112945 -47658202245913 --12/12
+add Mark George -308634931700056 -001763281277031 --21/11
+add James Peters -244 159 1479 --29/10/1921
+add Chad White -151 410 6233 -620 202 6426 -585 301 5117 
+add Amanda Reed -865 697 7036 -081 392 6835 
+add Michael Robertson -151 239 6845 -239 658 7226 -704 587 5850 --17/12/1945
+add Carol Smith  
+change Carol Smith -553 714 3860 -372 036 8742 -+100 487 5297 
+call Carol Smith
+bday Carol Smith
+add Adam Patterson -+821 963 1504 -361 937 8052 --07/04/1978
+change Adam Patterson -560 487 4036 -043 772 1747 --01/03
+add Patricia Contreras  
+change Patricia Contreras -010 384 4493 
+remove Patricia Contreras
+call Patricia Contreras
+bday Patricia Contreras
+add Kevin Valencia -816 952 1295 -680 475 5219 
+change Kevin Valencia -600 519 3676 
+call Kevin Valencia
+add James Anderson -+16022967806370 -53190786002261 
+change James Anderson 
+add Michael Smith -8482102452805 
+call Michael Smith
+bday Michael Smith
+search
+show_all
+page
+exit
