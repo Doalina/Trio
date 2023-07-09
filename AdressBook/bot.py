@@ -224,7 +224,7 @@ def main():
 
         else:
             command, *data = c.command, c.name, c.phones
-            if func := _commands.get(command):
+            if func := commands.get(command):
                 print(func(*data))
 
             else:
