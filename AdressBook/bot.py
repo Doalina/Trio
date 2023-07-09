@@ -2,6 +2,7 @@ import pickle
 from my_classes import *
 from parser_oop import Command
 from search import search, bday_people
+from prettytable import PrettyTable
 
 
 # Define break points and available commands
@@ -48,29 +49,30 @@ def hello(*_):
 
     return "How can I help you? Type 'help' to see list of available commands \n "
 
-
 @input_error
 def help(*_):
     """Show a list of available commands and their usage."""
 
-    list_of_instructions = [
-        "The order of input matters; only commands and names are strictly required;\nnumbers must not contain spaces \n",
-        "1. greeting: hello",
-        "2. adding or updating a contact: add name -number -additional numbers --birthday dd/mm(/yyyy)",
-        "3. completely modify an existing contact: change name -number --birthday",
-        "4. number(s): call name",
-        "5. removes the contact entirely: remove name",
-        "6. reveal the data: show_all",
-        "7. pagination with default value 2 record per page: page",
-        "8. days to birthday: bday name",
-        "9. show all available commands: help",
-        f"10. to exit the program and save changes: {' or '.join(list(BREAK_POINTS))} ",
-        "11. to search through the data: search",
-        "12. to see the list of people who have bdays in some days: bdays number_of_days",
-    ]
+    table = PrettyTable(["#", "Usage", "Command"])
 
-    return "\n".join(list_of_instructions)
+    table.add_row(["1", "hello", "greeting"], divider=True)
+    table.add_row(["2", "add name -number -additional numbers --birthday dd/mm(/yyyy)", "adding or updating a contact"], divider=True)
+    table.add_row(["3", "change name -number --birthday", "completely modify an existing contact"], divider=True)
+    table.add_row(["4", "call name", "number(s)"], divider=True)
+    table.add_row(["5", "remove name", "removes the contact entirely"], divider=True)
+    table.add_row(["6", "show_all", "reveal the data"], divider=True)
+    table.add_row(["7", "page", "pagination with default value 2 record per page"], divider=True)
+    table.add_row(["8", "help", "show all available commands"], divider=True)
+    table.add_row(["9", "search", "to search through the data"], divider=True)
+    table.add_row(["10", "bday name", "days to birthday"], divider=True)
+    table.add_row(["11", "bdays number_of_days", "list of people who have bdays in some days"], divider=True)
+    table.add_row(["12", ", or ".join(list(BREAK_POINTS)), "exit the program and save changes"])
 
+    table.align = "l"
+    table.horizontal_char = "-"
+    table.junction_char = "+"
+    
+    return str(table)
 
 @input_error
 def add(name, phones, bday=None):
@@ -230,10 +232,11 @@ def main():
             else:
                 print("No such command! To see available list of commands type 'help' ")
 
-    print("Good bye!")
+    # print("Good bye!")
 
 
 if __name__ == "__main__":
+    print('You are in the Adress Book! Type "help" to see instructions')
     main()
     with open(storage_name, "wb") as fh:
         pickle.dump(DATA, fh)
