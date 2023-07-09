@@ -1,6 +1,7 @@
 import os
 
 def print_menu():
+    print("You are in \"MAIN MENU\". Choose one of the options:")
     print("╔════════════════════════════════════════════════╗")
     print("║                                                ║")
     print("║                 MAIN MENU                      ║")
