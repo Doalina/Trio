@@ -148,7 +148,7 @@ while True:
         notes_per_page = 3
         notebook.display_all_notes(notes_per_page)
     elif choice == "7":
-        print("Goodbye!")
+        # print("Goodbye!")
         break
     else:
         print("Invalid choice. Please try again.")
