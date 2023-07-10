@@ -117,7 +117,7 @@ class NotesBook(UserDict):
 if __name__ == '__main__':
     notebook = NotesBook()
 
-    if os.path.isfile('notes_book.csv'):
+    if os.path.isfile(storage):
         with open(storage, 'r') as file:
             reader = csv.reader(file)
             next(reader)
