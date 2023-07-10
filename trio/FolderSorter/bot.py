@@ -212,4 +212,6 @@ def launch():
             print("something went wrong! please check your path input")
 
 
-# launch()
+if __name__ == '__main__':
+    launch()
+    
