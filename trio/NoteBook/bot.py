@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 import os
 import csv
 
-storage='trio\\NoteBook\\notes_book.csv'
+storage='NoteBook\\notes_book.csv'
 
 class Note:
     def __init__(self, title, content, tags):

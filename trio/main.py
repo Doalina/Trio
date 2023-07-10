@@ -1,5 +1,8 @@
 import os
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
 def print_menu():
     print("You are in \"MAIN MENU\". Choose one of the options:")
     print("╔════════════════════════════════════════════════╗")
@@ -19,13 +22,13 @@ def print_menu():
     print("╚════════════════════════════════════════════════╝")
 
 def run_address_book():
-    os.system("python trio\\AdressBook\\bot.py")
+    os.system("python AdressBook\\bot.py")
 
 def run_folder_sorter():
-    os.system("python trio\\FolderSorter\\bot.py")
+    os.system("python FolderSorter\\bot.py")
 
 def run_note_book():
-    os.system("python trio\\NoteBook\\bot.py")
+    os.system("python NoteBook\\bot.py")
 
 def main_menu():
     while True:
