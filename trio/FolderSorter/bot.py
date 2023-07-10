@@ -219,9 +219,12 @@ def launch():
             print("----------------------------------------------------------")
             print("the sorting is complete! here is some data report for you:")
             print("----------------------------------------------------------")
-            generate_table(data)
-            print(f"list of the known formats: {list(l_known)}")
-            print(f"list of the unknown formats: {list(l_unknown)}")
+            try:
+                generate_table(data)
+                print(f"list of the known formats: {list(l_known)}")
+                print(f"list of the unknown formats: {list(l_unknown)}")
+            except:
+                print('nothing to report!')
             break
 
         except:
