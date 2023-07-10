@@ -2,7 +2,7 @@
 
 ### how to use?
 
-0. Make sure you have python and pip installed
+0. Make sure you have python and pip installed (python3 for mac)
 1. Download the repository 
 2. Launch `pip install -e /path/to/folder/trio/here` in terminal (`\path\to\folder\trio\here` for mac or linux)
 3. Сall `trio` in terminal at any place

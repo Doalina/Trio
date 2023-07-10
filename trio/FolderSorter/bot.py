@@ -231,4 +231,4 @@ def launch():
             print("something went wrong! please check your path input")
 # else:
 #     print("Please enter 'clean-folder *a directory to sort here*' ")
-launch()
+# launch()
