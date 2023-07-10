@@ -37,6 +37,7 @@ def main_menu():
 
         elif choice == "2":
             run_folder_sorter()
+            input('press enter to continue')
 
         elif choice == "3":
             run_note_book()
