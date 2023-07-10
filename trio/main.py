@@ -19,13 +19,13 @@ def print_menu():
     print("╚════════════════════════════════════════════════╝")
 
 def run_address_book():
-    os.system("python trio\\AdressBook\\bot.py")
+    os.system("python3 trio/AdressBook/bot.py")
 
 def run_folder_sorter():
-    os.system("python trio\\FolderSorter\\bot.py")
+    os.system("python3 trio/FolderSorter/bot.py")
 
 def run_note_book():
-    os.system("python trio\\NoteBook\\bot.py")
+    os.system("python3 trio/NoteBook/bot.py")
 
 def main_menu():
     while True:

@@ -1,11 +1,11 @@
 from setuptools import setup, find_namespace_packages
 
 setup(
-    name="clean_folder",
+    name="TRIO",
     version="1.0.1",
     description="it does many things, see README",
-    url="https://github.com/anilev6/ByteCrafters",
-    author="Ani, Alina, Vlad, Alex",
+    url="https://github.com/anilev6/Trio",
+    author="ByteCrafters",
     license="kek",
     packages=find_namespace_packages(),
     install_requires=["markdown"],
