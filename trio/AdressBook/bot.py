@@ -9,7 +9,7 @@ from prettytable import PrettyTable
 BREAK_POINTS = {"good bye", "close", "exit"}
 
 # storage details; save on exit
-storage_name = "trio/AdressBook/data.bin"
+storage_name = "trio\\AdressBook\\data.bin"
 
 try:
     with open(storage_name, "rb") as fh:

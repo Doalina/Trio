@@ -1,8 +1,10 @@
 from collections import UserDict
 from colorama import Fore, Style
+from prettytable import PrettyTable
 import os
 import csv
 
+storage='trio\\NoteBook\\notes_book.csv'
 
 class Note:
     def __init__(self, title, content, tags):
@@ -33,25 +35,32 @@ class NotesBook(UserDict):
             if keyword.lower() in note.title.lower() or keyword.lower() in note.content.lower():
                 found_notes.append(note)
         if found_notes:
-            print(f"{Fore.YELLOW}Found {len(found_notes)} note(s):{Style.RESET_ALL}")
+            table = PrettyTable()
+            table.field_names = ["Title", "Content"]
             for note in found_notes:
-                print(note)
-                print("------------------------")
+                table.add_row([note.title, note.content])
+            print(f"\n{Fore.YELLOW}Found {len(found_notes)} note(s):{Style.RESET_ALL}")
+            print(table)
+            print("----------------------------")
         else:
-            print("No matching notes found.")
+            print(f"{Fore.RED}No matching notes found.")
 
     def sort_notes_by_tag(self, tag):
         found_notes = []
         for note in self.data.values():
-            if note.tags is not None and isinstance(note.tags, list) and tag.lower() in [t.lower() for t in note.tags]:
+            if note.tags is not None and isinstance(note.tags, list) and any(
+                    tag.lower() in t.lower() for t in note.tags):
                 found_notes.append(note)
         if found_notes:
-            print(f"{Fore.YELLOW}Notes with tag '{tag}':{Style.RESET_ALL}")
+            table = PrettyTable()
+            table.field_names = ["Title", "Content"]
             for note in found_notes:
-                print(note)
-                print("------------------------")
+                table.add_row([note.title, note.content])
+            print(f"\n{Fore.YELLOW}Notes with tag '{tag}':{Style.RESET_ALL}")
+            print(table)
+            print("----------------------------")
         else:
-            print(f"No notes found with tag '{tag}'.")
+            print(f"{Fore.RED}No notes found with tag '{tag}'.{Style.RESET_ALL}")
 
     def edit_note(self, title):
         found_note = self.data.get(title)
@@ -59,21 +68,21 @@ class NotesBook(UserDict):
         if found_note:
             new_content = input("Enter new content for the note: ")
             found_note.content = new_content
-            print("Note updated successfully!")
+            print(f"{Fore.GREEN}Note updated successfully!{Style.RESET_ALL}")
         else:
-            print("Note not found.")
+            print(f"{Fore.RED}Note not found.{Style.RESET_ALL}")
 
     def delete_note(self, title):
         if title in self.data:
             del self.data[title]
-            print("Note deleted successfully!")
+            print(f"{Fore.GREEN}Note deleted successfully!{Style.RESET_ALL}")
         else:
             for key in self.data.keys():
                 if key.lower().strip() == title.lower().strip():
                     del self.data[key]
-                    print("Note deleted successfully!")
+                    print(f"{Fore.GREEN}Note deleted successfully!{Style.RESET_ALL}")
                     return
-            print("Note not found.")
+            print(f"{Fore.RED}Note not found.{Style.RESET_ALL}")
 
     def display_all_notes(self, notes_per_page):
         if self.data:
@@ -85,11 +94,13 @@ class NotesBook(UserDict):
                 notes_to_display = list(self.data.values())[
                     (current_page - 1) * notes_per_page: current_page * notes_per_page]
                 if notes_to_display:
+                    table = PrettyTable()
+                    table.field_names = ["Title", "Content", "Tags"]
                     for note in notes_to_display:
-                        print(note)
-                        print("------------------------")
+                        table.add_row([note.title, note.content, ", ".join(note.tags) if note.tags else "-"])
+                    print(table)
                 else:
-                    print("No notes found on this page.")
+                    print(f"{Fore.RED}No notes found on this page.{Style.RESET_ALL}")
 
                 if current_page < total_pages:
                     choice = input(f"Press 'Enter' to view the next page, or 'q' to quit: ")
@@ -100,14 +111,14 @@ class NotesBook(UserDict):
                     print("End of notes.")
                     break
         else:
-            print("No notes found.")
+            print(f"{Fore.RED}No notes found.{Style.RESET_ALL}")
 
 
 if __name__ == '__main__':
     notebook = NotesBook()
 
     if os.path.isfile('notes_book.csv'):
-        with open('trio/NoteBook/notes_book.csv', 'r') as file:
+        with open(storage, 'r') as file:
             reader = csv.reader(file)
             next(reader)
             for row in reader:
@@ -117,13 +128,16 @@ if __name__ == '__main__':
                 notebook.add_note(title, content, tags)
 
 while True:
-    print("\n1. Add a note")
-    print("2. Search notes")
-    print("3. Sort notes by tag")
-    print("4. Edit a note")
-    print("5. Delete a note")
-    print("6. Display all notes")
-    print("7. Exit")
+    menu_table = PrettyTable()
+    menu_table.field_names = ["Option", "Description"]
+    menu_table.add_row(["1", "Add a note"])
+    menu_table.add_row(["2", "Search notes"])
+    menu_table.add_row(["3", "Sort notes by tag"])
+    menu_table.add_row(["4", "Edit a note"])
+    menu_table.add_row(["5", "Delete a note"])
+    menu_table.add_row(["6", "Display all notes"])
+    menu_table.add_row(["7", "Exit"])
+    print(menu_table)
     choice = input("Enter your choice (1-7): ")
 
     if choice == "1":
@@ -131,7 +145,7 @@ while True:
         content = input("Enter note content: ")
         tags = input("Enter comma-separated tags: ").split(",")
         notebook.add_note(title, content, tags)
-        print("Note added successfully!")
+        print(f"{Fore.GREEN}Note added successfully!{Style.RESET_ALL}")
     elif choice == "2":
         keyword = input("Enter a keyword to search notes: ")
         notebook.search_notes(keyword)
@@ -153,7 +167,7 @@ while True:
     else:
         print("Invalid choice. Please try again.")
 
-    with open('trio/NoteBook/notes_book.csv', 'w', newline='') as file:
+    with open(storage, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Title', 'Content', 'Tags'])
         for record in notebook.data.values():
@@ -161,4 +175,3 @@ while True:
             content = record.content
             tags = ','.join(record.tags) if record.tags else ''
             writer.writerow([title, content, tags])
-
