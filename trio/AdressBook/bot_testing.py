@@ -8,7 +8,7 @@ from bot import *
 @input_error
 def main():
     """Main function that runs the program."""
-    with open("AdressBook/tests.txt", "r") as fh:
+    with open("trio\\AdressBook\\tests.txt", "r") as fh:
         for cmd in fh.readlines():
             print("> " + cmd.strip())
             user_input = cmd.strip()
