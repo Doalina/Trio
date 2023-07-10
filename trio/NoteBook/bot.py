@@ -107,7 +107,7 @@ if __name__ == '__main__':
     notebook = NotesBook()
 
     if os.path.isfile('notes_book.csv'):
-        with open('NoteBook/notes_book.csv', 'r') as file:
+        with open('trio/NoteBook/notes_book.csv', 'r') as file:
             reader = csv.reader(file)
             next(reader)
             for row in reader:
@@ -153,7 +153,7 @@ while True:
     else:
         print("Invalid choice. Please try again.")
 
-    with open('NoteBook/notes_book.csv', 'w', newline='') as file:
+    with open('trio/NoteBook/notes_book.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Title', 'Content', 'Tags'])
         for record in notebook.data.values():
