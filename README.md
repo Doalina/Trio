@@ -13,3 +13,4 @@
 - unpacks archives;
 - deletes empty folders;
 - ignores unknown formats;
+- sort files in the specified folder by category: images, documents, videos);
