@@ -1,7 +1,11 @@
 import os
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
+
 def print_menu():
-    print("You are in \"MAIN MENU\". Choose one of the options:")
+    print('You are in "MAIN MENU". Choose one of the options:')
     print("╔════════════════════════════════════════════════╗")
     print("║                                                ║")
     print("║                 MAIN MENU                      ║")
@@ -18,14 +22,18 @@ def print_menu():
     print("║                                                ║")
     print("╚════════════════════════════════════════════════╝")
 
+
 def run_address_book():
-    os.system("python3 trio/AdressBook/bot.py")
+    os.system("python3 AdressBook/bot.py")
+
 
 def run_folder_sorter():
-    os.system("python3 trio/FolderSorter/bot.py")
+    os.system("python3 FolderSorter/bot.py")
+
 
 def run_note_book():
-    os.system("python3 trio/NoteBook/bot.py")
+    os.system("python3 NoteBook/bot.py")
+
 
 def main_menu():
     while True:
@@ -37,7 +45,7 @@ def main_menu():
 
         elif choice == "2":
             run_folder_sorter()
-            input('press enter to continue')
+            input("press enter to continue")
 
         elif choice == "3":
             run_note_book()
