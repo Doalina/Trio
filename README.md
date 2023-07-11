@@ -1,4 +1,6 @@
-## TRIO v.1.0.1
+# TRIO v.1.0.1
+
+#### <em>This is the Windows version of the product. For Unix-based systems, please choose "dev-mac" branch.</em>
 
 ### how to use?
 
